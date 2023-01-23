@@ -1,9 +1,9 @@
 // ==================== Require modules ==================
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("https");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
-
 
 // === Setting express app and connecting it to modules ===
 const app = express();
