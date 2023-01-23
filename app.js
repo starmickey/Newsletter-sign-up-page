@@ -53,10 +53,7 @@ app.post("/", function (req, res) {
             }
         });
 
-        console.log("adding " + response.email_address + " status code: " + response.statusCode);
-
-
-        if (response.statusCode === 200) {
+        if (response.status === "subscribed") {
             res.sendFile(__dirname + "/success.html");
 
         } else {
@@ -68,9 +65,13 @@ app.post("/", function (req, res) {
 });
 
 app.post("/failure", function (req, res) {
-    res.sendFile(__dirname + "/signup.html");
+    res.redirect("/");
 });
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("Server running");
 });
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 
