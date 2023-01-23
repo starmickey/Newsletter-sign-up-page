@@ -13,13 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // =============== Configurating Mailchimp ================
-const API_KEY = "57866b1f22605585d23d6c7ab60e4317-us21";
-const SERVER_PREFIX = "us21";
-const LIST_ID = "beec7ac31f";
 
 mailchimp.setConfig({
-    apiKey: API_KEY,
-    server: SERVER_PREFIX
+    apiKey: process.env.API_KEY,
+    server: process.env.SERVER_PREFIX
 });
 
 // ================== App events managers =================
@@ -47,7 +44,7 @@ app.post("/", function (req, res) {
     };
 
     const subscribeUser = async () => {
-        const response = await mailchimp.lists.addListMember(LIST_ID, {
+        const response = await mailchimp.lists.addListMember(process.env.LIST_ID, {
             email_address: subscribingUser.email,
             status: "subscribed",
             merge_fields: {
