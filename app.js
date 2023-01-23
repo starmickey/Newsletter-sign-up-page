@@ -53,8 +53,10 @@ app.post("/", function (req, res) {
             }
         });
 
+        console.log("adding " + response.email_address + " status code: " + response.statusCode);
+
+
         if (response.statusCode === 200) {
-            console.log(response.email_address + "'s been added to audience as " + response.status);
             res.sendFile(__dirname + "/success.html");
 
         } else {
